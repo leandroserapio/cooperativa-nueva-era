@@ -1,4 +1,3 @@
-
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
@@ -26,6 +25,14 @@ function initNavigation() {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         });
+    });
+
+    // Close mobile menu when scrolling
+    window.addEventListener('scroll', () => {
+        if (navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
     });
 
     // Navbar scroll effect
