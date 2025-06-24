@@ -6,10 +6,9 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Host Grotesk', 'Roboto', sans-serif;
     line-height: 1.6;
     color: #333;
-    scroll-behavior: smooth;
 }
 
 .container {
@@ -40,17 +39,16 @@ body {
     height: 80px;
 }
 
-.nav-logo h2 {
-    color: #c41e3a;
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: -5px;
+.nav-logo img {
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
-.nav-logo span {
-    color: #666;
-    font-size: 0.9rem;
-    font-weight: 400;
+@media screen and (max-width: 768px) {
+    .nav-logo img {
+        height: 40px;
+    }
 }
 
 .nav-menu {
@@ -69,7 +67,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #c41e3a;
+    color: #cc2228;
 }
 
 .nav-link::after {
@@ -79,7 +77,7 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: #c41e3a;
+    background: #cc2228;
     transition: width 0.3s ease;
 }
 
@@ -104,8 +102,8 @@ body {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #c41e3a 0%, #000000 100%);
+    min-height: 80vh;
+    background: linear-gradient(135deg, #cc2228 0%, #000000 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -197,7 +195,7 @@ body {
 
 .btn-secondary:hover {
     background: white;
-    color: #c41e3a;
+    color: #cc2228;
     transform: translateY(-2px);
 }
 
@@ -251,7 +249,7 @@ body {
 
 .section-header h2 {
     font-size: 2.5rem;
-    color: #c41e3a;
+    color: #cc2228;
     margin-bottom: 1rem;
     font-weight: 700;
 }
@@ -278,7 +276,7 @@ body {
 
 .about-text h3 {
     font-size: 1.8rem;
-    color: #c41e3a;
+    color: #cc2228;
     margin-bottom: 1.5rem;
 }
 
@@ -305,7 +303,7 @@ body {
 
 .stat h4 {
     font-size: 2rem;
-    color: #c41e3a;
+    color: #cc2228;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
@@ -323,7 +321,7 @@ body {
 }
 
 .image-placeholder {
-    background: #c41e3a;
+    background: #cc2228;
     color: white;
     padding: 3rem;
     border-radius: 15px;
@@ -361,7 +359,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border-top: 4px solid #c41e3a;
+    border-top: 4px solid #cc2228;
 }
 
 .service-card:hover {
@@ -370,7 +368,7 @@ body {
 }
 
 .service-icon {
-    background: #c41e3a;
+    background: #cc2228;
     color: white;
     width: 70px;
     height: 70px;
@@ -441,7 +439,7 @@ body {
 }
 
 .machine-icon {
-    background: linear-gradient(135deg, #c41e3a, #000000);
+    background: linear-gradient(135deg, #cc2228, #000000);
     color: white;
     width: 80px;
     height: 80px;
@@ -481,7 +479,7 @@ body {
 
 .machine-specs span {
     background: #f0f4f8;
-    color: #c41e3a;
+    color: #cc2228;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -502,7 +500,7 @@ body {
 
 .contact-info h3 {
     font-size: 1.8rem;
-    color: #c41e3a;
+    color: #cc2228;
     margin-bottom: 2rem;
 }
 
@@ -521,7 +519,7 @@ body {
 
 .contact-item h4 {
     font-size: 1.1rem;
-    color: #c41e3a;
+    color: #cc2228;
     margin-bottom: 0.5rem;
 }
 
@@ -532,7 +530,7 @@ body {
 
 .contact-form h3 {
     font-size: 1.8rem;
-    color: #c41e3a;
+    color: #cc2228;
     margin-bottom: 2rem;
 }
 
@@ -557,7 +555,7 @@ body {
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #c41e3a;
+    border-color: #cc2228;
     box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.1);
 }
 
@@ -581,13 +579,13 @@ body {
     top: -10px;
     left: 10px;
     font-size: 0.9rem;
-    color: #c41e3a;
+    color: #cc2228;
 }
 
 .form-group input:not(:placeholder-shown),
 .form-group textarea:not(:placeholder-shown),
 .form-group select:not([value=""]) {
-    border-color: #c41e3a;
+    border-color: #cc2228;
 }
 
 /* Footer */
