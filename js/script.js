@@ -13,11 +13,13 @@ function initNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const overlay = document.querySelector('.menu-overlay');
 
     // Toggle mobile menu
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
     });
 
     // Close mobile menu when clicking a link
@@ -25,6 +27,7 @@ function initNavigation() {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            overlay.classList.remove('active');
         });
     });
 
@@ -33,6 +36,35 @@ function initNavigation() {
         if (navMenu.classList.contains('active')) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(event) {
+        const isMenuOpen = navMenu.classList.contains('active');
+        if (!isMenuOpen) return;
+        const isClickInsideMenu = navMenu.contains(event.target) || hamburger.contains(event.target);
+        if (!isClickInsideMenu && !overlay.contains(event.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    });
+
+    // Cerrar menú al hacer clic en el overlay
+    overlay.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    // Cerrar menú con Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
         }
     });
 
@@ -81,34 +113,23 @@ function initSmoothScrolling() {
     
     [...navLinks, ...heroButtons].forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+            if (targetId && targetId.startsWith('#')) {
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    e.preventDefault();
+                    // Esperar a que el menú se cierre visualmente antes de hacer scroll
+                    setTimeout(() => {
+                        const headerOffset = 80;
+                        const elementPosition = targetSection.getBoundingClientRect().top + window.scrollY;
+                        const offsetPosition = elementPosition - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 320); // 320ms = duración de la transición del menú
+                }
             }
-        });
-    });
-
-    // Optimized smooth scrolling
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            const headerOffset = 80; // Height of your fixed header
-            const elementPosition = targetSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
         });
     });
 }
@@ -328,20 +349,6 @@ window.addEventListener('scroll', requestTick);
 // Preloader (optional)
 window.addEventListener('load', function() {
     document.body.classList.add('loaded');
-});
-
-// Add keyboard navigation support
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        // Close mobile menu if open
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        if (navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    }
 });
 
 // Performance optimization: Lazy loading for images

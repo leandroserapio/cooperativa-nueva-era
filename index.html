@@ -16,7 +16,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="img/Logo Cooperativa Nueva Era-02.webp" alt="Nueva Era - Cooperativa Gráfica">
+                <img src="img/logonuevaera.webp" alt="Nueva Era - Cooperativa Gráfica">
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Inicio</a></li>
@@ -24,6 +24,13 @@
                 <li><a href="#services" class="nav-link">Servicios</a></li>
                 <li><a href="#machinery" class="nav-link">Maquinaria</a></li>
                 <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <!-- Mobile Only Buttons -->
+                <div class="mobile-menu-buttons">
+                    <a href="#contact" class="btn btn-menu btn-budget">Pedir Presupuesto</a>
+                    <a href="https://wa.me/5491134567890" target="_blank" class="btn btn-menu btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Consulta por Whatsapp
+                    </a>
+                </div>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -74,38 +81,70 @@
         <div class="container">
             <div class="section-header">
                 <h2>Sobre Nosotros</h2>
-                <p>Una historia de perseverancia y dedicación</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Nuestra Historia</h3>
-                    <p>Nueva Era nació de la determinación de cuatro trabajadores que, frente a la crisis de la empresa donde laboraban, decidieron no rendirse. Unidos por la pasión por las artes gráficas y años de experiencia compartida, tomaron la decisión de recuperar la empresa y darle una nueva vida.</p>
-                    
-                    <p>Con más de 30 años de trayectoria en el sector, nuestro equipo ha mantenido la excelencia en cada proyecto, adaptándose a las nuevas tecnologías sin perder la esencia artesanal que nos caracteriza.</p>
-                    
-                    <p>Hoy, Nueva Era se posiciona como una de las imprentas más confiables de la región, brindando servicios integrales de artes gráficas con la calidad y dedicación que nos distingue desde nuestros inicios.</p>
-                    
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h4>30+</h4>
-                            <p>Años de Experiencia</p>
-                        </div>
-                        <div class="stat">
-                            <h4>4</h4>
-                            <p>Socios Fundadores</p>
-                        </div>
-                        <div class="stat">
-                            <h4>1000+</h4>
-                            <p>Proyectos Completados</p>
-                        </div>
+            <div class="about-content about-content-vertical">
+                <div class="about-text fade-in active">
+                    <p class="about-description">
+                        Nueva Era nació de la determinación de cuatro trabajadores que, frente a la crisis de la empresa donde laboraban, decidieron no rendirse. Unidos por la pasión por las artes gráficas y años de experiencia compartida, tomaron la decisión de recuperar la empresa y darle una nueva vida.
+                    </p>
+                    <p class="about-description">
+                        Con más de 30 años de trayectoria en el sector, nuestro equipo ha mantenido la excelencia en cada proyecto, adaptándose a las nuevas tecnologías sin perder la esencia artesanal que nos caracteriza.
+                    </p>
+                </div>
+                <div class="about-team team-row">
+                    <div class="team-member">
+                        <img src="img/fotoperfil.png" alt="Trabajador 1">
+                        <div class="team-name">Nombre</div>
+                    </div>
+                    <div class="team-member">
+                        <img src="img/fotoperfil.png" alt="Trabajador 2">
+                        <div class="team-name">Nombre</div>
+                    </div>
+                    <div class="team-member">
+                        <img src="img/fotoperfil.png" alt="Trabajador 3">
+                        <div class="team-name">Nombre</div>
+                    </div>
+                    <div class="team-member">
+                        <img src="img/fotoperfil.png" alt="Trabajador 4">
+                        <div class="team-name">Nombre</div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-building"></i>
-                        <p>Nuestras Instalaciones</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- Experience Section -->
+     <section class="experience">
+        <div class="container">
+            <div class="experience-content">
+                <h2>Nuestra Experiencia</h2>
+                <p>Nuestro viaje comenzó hace más de 25 años, cuando un grupo de apasionados por las artes gráficas decidió unir fuerzas para crear algo extraordinario. Lo que empezó como un pequeño taller familiar se ha convertido en un referente de calidad e innovación en el sector gráfico.</p>
+                <div class="years-experience">
+                    <span class="years-number">+25</span>
+                    <span class="years-text">Años de <br>Experiencia</span>
+                </div>
+            </div>
+            
+            <div class="logo-carousel-container">
+                <div class="logo-carousel">
+                    <div class="logo-carousel-track">
+                        <div class="logo-item">Marca 1</div>
+                        <div class="logo-item">Marca 2</div>
+                        <div class="logo-item">Marca 3</div>
+                        <div class="logo-item">Marca 4</div>
+                        <div class="logo-item">Marca 5</div>
+                        <div class="logo-item">Marca 6</div>
+                        <!-- Duplicate items for infinite loop effect -->
+                        <div class="logo-item">Marca 1</div>
+                        <div class="logo-item">Marca 2</div>
+                        <div class="logo-item">Marca 3</div>
+                        <div class="logo-item">Marca 4</div>
+                        <div class="logo-item">Marca 5</div>
+                        <div class="logo-item">Marca 6</div>
                     </div>
                 </div>
+                <div class="carousel-fade left"></div>
+                <div class="carousel-fade right"></div>
             </div>
         </div>
     </section>
@@ -426,5 +465,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/carousel.js"></script>
+    <div class="menu-overlay"></div>
 </body>
 </html>
