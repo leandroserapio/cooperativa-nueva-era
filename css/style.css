@@ -885,7 +885,6 @@ body {
     padding: 1rem 0;
     margin-top: 1rem;
     width: 100%;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .btn-menu {
@@ -926,7 +925,7 @@ body {
 
 .btn-whatsapp i {
     margin-right: 8px;
-    font-size: 1.2rem;
+    font-size: 2.5rem;
 }
 
 /* Desktop styles */
@@ -1128,5 +1127,17 @@ body {
     
     .contact-form {
         margin-top: 0;
+    }
+
+    /* Services Section */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    .service-card {
+        padding: 2rem;
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
