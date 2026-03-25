@@ -1,3 +1,7 @@
+// FormSubmit: envía el formulario a tu correo. La primera vez que uses un email,
+// FormSubmit te manda un mail de activación; hay que abrir el enlace una sola vez.
+const CONTACT_FORM_ENDPOINT = 'https://formsubmit.co/ajax/coopgraficanuevaera@gmail.com';
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
@@ -186,6 +190,8 @@ function initScrollAnimations() {
 // Contact form functionality
 function initContactForm() {
     const form = document.getElementById('contactForm');
+    if (!form) return;
+
     const inputs = form.querySelectorAll('input, textarea, select');
 
     // Add placeholder functionality for better UX
@@ -195,47 +201,77 @@ function initContactForm() {
         }
     });
 
-    // Form submission
-    form.addEventListener('submit', function(e) {
+    // Form submission (FormSubmit.co — requiere sitio servido por HTTP/HTTPS, no file://)
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Get form data
+
         const formData = new FormData(form);
         const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            service: formData.get('service'),
-            message: formData.get('message')
+            name: (formData.get('name') || '').trim(),
+            email: (formData.get('email') || '').trim(),
+            phone: (formData.get('phone') || '').trim(),
+            service: formData.get('service') || '',
+            message: (formData.get('message') || '').trim()
         };
 
-        // Basic validation
         if (!data.name || !data.email || !data.message) {
             showNotification('Por favor, complete todos los campos requeridos.', 'error');
             return;
         }
 
-        // Email validation
+        if (!data.service) {
+            showNotification('Por favor, seleccioná un servicio de interés.', 'error');
+            return;
+        }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             showNotification('Por favor, ingrese un email válido.', 'error');
             return;
         }
 
-        // Simulate form submission
         const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
-        
+
         submitButton.textContent = 'Enviando...';
         submitButton.disabled = true;
 
-        // Simulate API call
-        setTimeout(() => {
-            showNotification('¡Mensaje enviado exitosamente! Nos pondremos en contacto pronto.', 'success');
-            form.reset();
+        try {
+            const response = await fetch(CONTACT_FORM_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json'
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phone || '—',
+                    servicio: data.service,
+                    message: data.message,
+                    _subject: `[Nueva Era — Web] ${data.name} (${data.service})`,
+                    _template: 'table'
+                })
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (response.ok) {
+                showNotification('¡Mensaje enviado! Te responderemos pronto.', 'success');
+                form.reset();
+                inputs.forEach(input => {
+                    if (input.parentElement) input.parentElement.classList.remove('focused');
+                });
+            } else {
+                const msg = result.message || result.error || 'No se pudo enviar. Probá de nuevo más tarde.';
+                showNotification(msg, 'error');
+            }
+        } catch (err) {
+            showNotification('Error de conexión. Si abrís la página como archivo local, subila a un hosting o probá con internet.', 'error');
+        } finally {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
-        }, 2000);
+        }
     });
 
     // Input focus effects
