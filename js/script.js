@@ -31,15 +31,6 @@ function initNavigation() {
         });
     });
 
-    // Close mobile menu when scrolling
-    window.addEventListener('scroll', () => {
-        if (navMenu.classList.contains('active')) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        }
-    });
-
     // Cerrar menú al hacer clic fuera
     document.addEventListener('click', function(event) {
         const isMenuOpen = navMenu.classList.contains('active');
@@ -150,7 +141,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Add animation classes to elements
-    const animateElements = document.querySelectorAll('.service-card, .machine-card, .about-text, .about-image, .contact-info, .contact-form');
+    const animateElements = document.querySelectorAll('.service-card, .about-text, .about-image, .contact-info, .contact-form');
     
     animateElements.forEach((element, index) => {
         element.classList.add('fade-in');

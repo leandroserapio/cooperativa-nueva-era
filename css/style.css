@@ -11,6 +11,10 @@ body {
     color: #333;
 }
 
+h2{
+    line-height: 36px;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -23,7 +27,6 @@ body {
     top: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all 0.3s ease;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
@@ -32,7 +35,7 @@ body {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -470,80 +473,6 @@ body {
     left: 0;
     color: #ff4444;
     font-weight: bold;
-}
-
-/* Machinery Section */
-.machinery {
-    padding: 8rem 0;
-    background: #f8f9fa;
-}
-
-.machinery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.machine-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    text-align: left;
-}
-
-.machine-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
-.machine-icon {
-    background: linear-gradient(135deg, #cc2228, #000000);
-    color: white;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0px 24px -5px;
-    font-size: 1.8rem;
-}
-
-.machine-card h3 {
-    font-size: 1.4rem;
-    color: #c41e3a;
-    margin-bottom: 0rem;
-    font-weight: 600;
-}
-
-.machine-card p {
-    color: #666;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.machine-card p strong {
-    color: #ff4444;
-    font-weight: 600;
-}
-
-.machine-specs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: left;
-    margin-top: 1.5rem;
-}
-
-.machine-specs span {
-    background: #f0f4f8;
-    color: #cc2228;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
 }
 
 /* Experience Section */
