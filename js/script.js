@@ -1,6 +1,4 @@
-// FormSubmit: envía el formulario a tu correo. La primera vez que uses un email,
-// FormSubmit te manda un mail de activación; hay que abrir el enlace una sola vez.
-const CONTACT_FORM_ENDPOINT = 'https://formsubmit.co/ajax/coopgraficanuevaera@gmail.com';
+const WEB3FORMS_SUBMIT_URL = 'https://api.web3forms.com/submit';
 
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -196,14 +194,25 @@ function initContactForm() {
 
     // Add placeholder functionality for better UX
     inputs.forEach(input => {
-        if (input.type !== 'submit') {
+        if (input.type !== 'submit' && input.type !== 'hidden' && input.type !== 'checkbox') {
             input.setAttribute('placeholder', ' ');
         }
     });
 
-    // Form submission (FormSubmit.co — requiere sitio servido por HTTP/HTTPS, no file://)
+    // Envío con Web3Forms (https://web3forms.com — clave gratis en el HTML, campo access_key)
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+
+        const accessKeyInput = form.querySelector('#web3formsAccessKey');
+        const accessKey = (accessKeyInput && accessKeyInput.value) ? accessKeyInput.value.trim() : '';
+
+        if (!accessKey) {
+            showNotification(
+                'Falta la clave de envío: entrá a web3forms.com, pedí una Access Key con tu email, y pegala en index.html en el campo oculto access_key.',
+                'error'
+            );
+            return;
+        }
 
         const formData = new FormData(form);
         const data = {
@@ -236,38 +245,35 @@ function initContactForm() {
         submitButton.textContent = 'Enviando...';
         submitButton.disabled = true;
 
+        const payload = Object.fromEntries(formData.entries());
+        payload.subject = `[Nueva Era — Web] ${data.name} (${data.service})`;
+        payload.from_name = data.name;
+
         try {
-            const response = await fetch(CONTACT_FORM_ENDPOINT, {
+            const response = await fetch(WEB3FORMS_SUBMIT_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json'
                 },
-                body: JSON.stringify({
-                    name: data.name,
-                    email: data.email,
-                    phone: data.phone || '—',
-                    servicio: data.service,
-                    message: data.message,
-                    _subject: `[Nueva Era — Web] ${data.name} (${data.service})`,
-                    _template: 'table'
-                })
+                body: JSON.stringify(payload)
             });
 
             const result = await response.json().catch(() => ({}));
 
-            if (response.ok) {
+            if (result.success === true) {
                 showNotification('¡Mensaje enviado! Te responderemos pronto.', 'success');
                 form.reset();
+                if (accessKeyInput) accessKeyInput.value = accessKey;
                 inputs.forEach(input => {
                     if (input.parentElement) input.parentElement.classList.remove('focused');
                 });
             } else {
-                const msg = result.message || result.error || 'No se pudo enviar. Probá de nuevo más tarde.';
+                const msg = result.message || 'No se pudo enviar. Revisá la clave en index.html o probá más tarde.';
                 showNotification(msg, 'error');
             }
         } catch (err) {
-            showNotification('Error de conexión. Si abrís la página como archivo local, subila a un hosting o probá con internet.', 'error');
+            showNotification('Error de conexión. Probá con otra red o abrí el sitio con “Live Server” si estás en local.', 'error');
         } finally {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
