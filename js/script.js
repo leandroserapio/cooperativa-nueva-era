@@ -194,6 +194,9 @@ function initContactForm() {
 
     // Add placeholder functionality for better UX
     inputs.forEach(input => {
+        // Evitamos tocar el campo/captcha interno para no interferir con el widget
+        if (input.name === 'h-captcha-response') return;
+
         if (input.type !== 'submit' && input.type !== 'hidden' && input.type !== 'checkbox') {
             input.setAttribute('placeholder', ' ');
         }
@@ -230,6 +233,14 @@ function initContactForm() {
 
         if (!data.service) {
             showNotification('Por favor, seleccioná un servicio de interés.', 'error');
+            return;
+        }
+
+        // Validación básica de hCaptcha: el widget debería inyectar este campo en el DOM
+        const hCaptchaResponseEl = form.querySelector('textarea[name="h-captcha-response"]');
+        const hCaptchaResponse = hCaptchaResponseEl ? (hCaptchaResponseEl.value || '').trim() : '';
+        if (!hCaptchaResponse) {
+            showNotification('Completá el captcha para poder enviar el mensaje.', 'error');
             return;
         }
 
