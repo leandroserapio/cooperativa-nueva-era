@@ -24,8 +24,8 @@ function initNavigation() {
         overlay.classList.toggle('active');
     });
 
-    // Close mobile menu when clicking a link
-    navLinks.forEach(link => {
+    // Cerrar menú al elegir cualquier enlace del drawer (incluye CTAs que no son .nav-link)
+    navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
@@ -61,15 +61,16 @@ function initNavigation() {
         }
     });
 
-    // Navbar scroll effect
+    // Navbar scroll effect (coherente con fondo editorial #fcf9f4)
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
         if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 30px rgba(0, 0, 0, 0.15)';
+            navbar.style.background = 'rgba(252, 249, 244, 0.97)';
+            navbar.style.boxShadow = '0 2px 24px rgba(28, 28, 25, 0.08)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            navbar.style.background = 'rgba(252, 249, 244, 0.85)';
+            navbar.style.boxShadow = 'none';
         }
     });
 
@@ -103,8 +104,10 @@ function initNavigation() {
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('.nav-link');
     const heroButtons = document.querySelectorAll('.hero-buttons a');
-    
-    [...navLinks, ...heroButtons].forEach(link => {
+    const smoothAnchors = document.querySelectorAll('a.smooth-scroll[href^="#"]');
+    const scrollLinks = new Set([...navLinks, ...heroButtons, ...smoothAnchors]);
+
+    scrollLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId && targetId.startsWith('#')) {
@@ -143,7 +146,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Add animation classes to elements
-    const animateElements = document.querySelectorAll('.service-card, .about-text, .about-image, .contact-info, .contact-form');
+    const animateElements = document.querySelectorAll('.service-card, .about-text, .about-image, .contact-info, .contact-form, .logo-carousel-container');
     
     animateElements.forEach((element, index) => {
         element.classList.add('fade-in');
