@@ -188,6 +188,26 @@ function initScrollAnimations() {
     document.head.appendChild(style);
 }
 
+function getHCaptchaToken(form) {
+    if (typeof hcaptcha !== 'undefined' && typeof hcaptcha.getResponse === 'function') {
+        const token = (hcaptcha.getResponse() || '').trim();
+        if (token) return token;
+    }
+
+    const responseEl = form.querySelector('textarea[name="h-captcha-response"]');
+    return responseEl ? (responseEl.value || '').trim() : '';
+}
+
+function resetHCaptcha() {
+    if (typeof hcaptcha !== 'undefined' && typeof hcaptcha.reset === 'function') {
+        try {
+            hcaptcha.reset();
+        } catch (err) {
+            // El widget puede no estar listo todavía
+        }
+    }
+}
+
 // Contact form functionality
 function initContactForm() {
     const form = document.getElementById('contactForm');
@@ -239,17 +259,15 @@ function initContactForm() {
             return;
         }
 
-        // Validación básica de hCaptcha: el widget debería inyectar este campo en el DOM
-        const hCaptchaResponseEl = form.querySelector('textarea[name="h-captcha-response"]');
-        const hCaptchaResponse = hCaptchaResponseEl ? (hCaptchaResponseEl.value || '').trim() : '';
-        if (!hCaptchaResponse) {
-            showNotification('Completá el captcha para poder enviar el mensaje.', 'error');
-            return;
-        }
-
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
             showNotification('Por favor, ingrese un email válido.', 'error');
+            return;
+        }
+
+        const hCaptchaResponse = getHCaptchaToken(form);
+        if (!hCaptchaResponse) {
+            showNotification('Completá el captcha (casilla “Soy humano”) antes de enviar.', 'error');
             return;
         }
 
@@ -260,6 +278,7 @@ function initContactForm() {
         submitButton.disabled = true;
 
         const payload = Object.fromEntries(formData.entries());
+        payload['h-captcha-response'] = hCaptchaResponse;
         payload.subject = `[Nueva Era — Web] ${data.name} (${data.service})`;
         payload.from_name = data.name;
 
@@ -279,14 +298,21 @@ function initContactForm() {
                 showNotification('¡Mensaje enviado! Te responderemos pronto.', 'success');
                 form.reset();
                 if (accessKeyInput) accessKeyInput.value = accessKey;
+                resetHCaptcha();
                 inputs.forEach(input => {
                     if (input.parentElement) input.parentElement.classList.remove('focused');
                 });
             } else {
-                const msg = result.message || 'No se pudo enviar. Revisá la clave en index.html o probá más tarde.';
+                resetHCaptcha();
+                const rawMsg = (result.message || '').toLowerCase();
+                const isCaptchaError = rawMsg.includes('captcha') || rawMsg.includes('hcaptcha');
+                const msg = isCaptchaError
+                    ? 'El captcha expiró o no es válido. Marcá “Soy humano” de nuevo e intentá enviar.'
+                    : (result.message || 'No se pudo enviar. Revisá la clave en index.html o probá más tarde.');
                 showNotification(msg, 'error');
             }
         } catch (err) {
+            resetHCaptcha();
             showNotification('Error de conexión. Probá con otra red o abrí el sitio con “Live Server” si estás en local.', 'error');
         } finally {
             submitButton.textContent = originalText;
@@ -296,18 +322,20 @@ function initContactForm() {
 
     // Input focus effects
     inputs.forEach(input => {
+        if (input.name === 'h-captcha-response') return;
+
         input.addEventListener('focus', function() {
-            this.parentElement.classList.add('focused');
+            if (this.parentElement) this.parentElement.classList.add('focused');
         });
 
         input.addEventListener('blur', function() {
-            if (!this.value) {
+            if (!this.value && this.parentElement) {
                 this.parentElement.classList.remove('focused');
             }
         });
 
         // Check if input has value on page load
-        if (input.value) {
+        if (input.value && input.parentElement) {
             input.parentElement.classList.add('focused');
         }
     });
