@@ -7,7 +7,27 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initContactForm();
     initSmoothScrolling();
+    initHeroVideo();
 });
+
+// Hero: el póster queda visible hasta que el video realmente reproduce (sin hueco ni parpadeo)
+function initHeroVideo() {
+    const video = document.querySelector('.hero-video');
+    if (!video) return;
+
+    const show = () => video.classList.add('is-playing');
+    if (!video.paused && video.readyState >= 3) {
+        show();
+    } else {
+        video.addEventListener('playing', show, { once: true });
+    }
+
+    // Algunos navegadores bloquean el autoplay: lo reintentamos sin romper nada
+    const playPromise = video.play && video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {});
+    }
+}
 
 // Navigation functionality
 function initNavigation() {

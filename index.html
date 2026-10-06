@@ -2,12 +2,19 @@
 <html class="light" lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#af101a">
     <title>Nueva Era – Cooperativa Gráfica | Impresión y diseño en CABA</title>
     <meta name="description" content="Cooperativa gráfica en CABA con más de 30 años de trayectoria. Impresión, acabados, packaging, identidad corporativa y diseño. Soluciones integrales en comunicación visual. Pedí presupuesto.">
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="Nueva Era Cooperativa Gráfica">
+    <meta name="geo.region" content="AR-C">
+    <meta name="geo.placename" content="Ciudad Autónoma de Buenos Aires">
+
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="img/icon-512.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
     <link rel="canonical" href="https://leandroserapio.github.io/cooperativa-nueva-era/">
 
@@ -16,13 +23,23 @@
     <meta property="og:title" content="Nueva Era – Cooperativa Gráfica | Impresión y diseño en CABA">
     <meta property="og:description" content="Cooperativa gráfica en CABA con más de 30 años de trayectoria. Impresión, acabados, packaging, identidad corporativa y diseño. Soluciones integrales en comunicación visual. Pedí presupuesto.">
     <meta property="og:url" content="https://leandroserapio.github.io/cooperativa-nueva-era/">
-    <meta property="og:image" content="img/logonuevaera.webp">
+    <meta property="og:site_name" content="Nueva Era Cooperativa Gráfica">
+    <meta property="og:image" content="https://leandroserapio.github.io/cooperativa-nueva-era/img/og-nueva-era.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Equipo de Nueva Era Cooperativa Gráfica">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nueva Era – Cooperativa Gráfica | Impresión y diseño en CABA">
     <meta name="twitter:description" content="Cooperativa gráfica en CABA con más de 30 años de trayectoria. Impresión, acabados, packaging, identidad corporativa y diseño. Soluciones integrales en comunicación visual. Pedí presupuesto.">
-    <meta name="twitter:image" content="img/logonuevaera.webp">
+    <meta name="twitter:image" content="https://leandroserapio.github.io/cooperativa-nueva-era/img/og-nueva-era.jpg">
 
+    <!-- Hero: el póster se pide primero para que nunca se vea el hueco mientras carga el video -->
+    <link rel="preload" as="image" href="img/hero-nueva-era-poster-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" href="img/hero-nueva-era-poster.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -105,6 +122,9 @@
       }
       .masthead-text { letter-spacing: -0.04em; }
       .label-text { letter-spacing: 0.15em; text-transform: uppercase; }
+      .hero-video { opacity: 0; transition: opacity 0.6s ease; }
+      .hero-video.is-playing { opacity: 1; }
+      @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
       .hero-text-shadow { text-shadow: 0 2px 24px rgba(0,0,0,0.45); }
 
       .navbar {
@@ -188,31 +208,61 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Nueva Era - Cooperativa Gráfica",
-      "description": "Cooperativa gráfica en CABA con más de 30 años de trayectoria. Impresión, acabados, packaging, identidad corporativa y diseño. Soluciones integrales en comunicación visual.",
-      "url": "https://leandroserapio.github.io/cooperativa-nueva-era/",
-      "telephone": "+54 011 6265-3257",
-      "email": "coopgraficanuevaera@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Regimiento Patricios 1941",
-        "addressLocality": "CABA",
-        "addressRegion": "Buenos Aires",
-        "addressCountry": "AR"
-      },
-      "openingHoursSpecification": [
+      "@graph": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "08:00",
-          "closes": "18:00"
+          "@type": "LocalBusiness",
+          "@id": "https://leandroserapio.github.io/cooperativa-nueva-era/#negocio",
+          "name": "Nueva Era - Cooperativa Gráfica",
+          "alternateName": "Cooperativa Gráfica Nueva Era",
+          "description": "Cooperativa gráfica en CABA con más de 30 años de trayectoria. Impresión offset, acabados, packaging, material corporativo y diseño gráfico.",
+          "url": "https://leandroserapio.github.io/cooperativa-nueva-era/",
+          "logo": "https://leandroserapio.github.io/cooperativa-nueva-era/img/logonuevaera.webp",
+          "image": "https://leandroserapio.github.io/cooperativa-nueva-era/img/og-nueva-era.jpg",
+          "telephone": "+54 11 6265-3257",
+          "email": "coopgraficanuevaera@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Regimiento Patricios 1941",
+            "addressLocality": "Ciudad Autónoma de Buenos Aires",
+            "addressRegion": "CABA",
+            "addressCountry": "AR"
+          },
+          "areaServed": { "@type": "AdministrativeArea", "name": "Buenos Aires" },
+          "knowsAbout": ["Impresión offset", "Acabados gráficos", "Packaging", "Material corporativo", "Diseño gráfico", "Material editorial"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Servicios gráficos",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Impresión offset", "description": "Folletos, catálogos, revistas, libros y material promocional." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acabados gráficos", "description": "Troquelado, perforado, plegado, encuadernación y laminados especiales." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Packaging", "description": "Cajas, estuches, bolsas, sobres y etiquetas adhesivas." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Material corporativo", "description": "Tarjetas personales, papelería membretada y carpetas corporativas." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseño gráfico", "description": "Identidad, maquetación editorial y artes finales para imprenta." } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Entrega y logística", "description": "Entregas programadas, urgencias coordinadas y logística a medida." } }
+            ]
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Saturday"],
+              "opens": "09:00",
+              "closes": "13:00"
+            }
+          ]
         },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Saturday"],
-          "opens": "09:00",
-          "closes": "13:00"
+          "@type": "WebSite",
+          "@id": "https://leandroserapio.github.io/cooperativa-nueva-era/#sitio",
+          "url": "https://leandroserapio.github.io/cooperativa-nueva-era/",
+          "name": "Nueva Era Cooperativa Gráfica",
+          "inLanguage": "es-AR",
+          "publisher": { "@id": "https://leandroserapio.github.io/cooperativa-nueva-era/#negocio" }
         }
       ]
     }
@@ -223,7 +273,7 @@
         <div class="nav-container">
             <div class="nav-logo h-10 shrink-0">
                 <a href="#home" class="smooth-scroll block h-full" aria-label="Inicio">
-                    <img src="img/logonuevaera.webp" alt="Nueva Era - Cooperativa Gráfica" class="h-full w-auto">
+                    <img src="img/logonuevaera.webp" alt="Nueva Era - Cooperativa Gráfica" class="h-full w-auto" width="256" height="103">
                 </a>
             </div>
             <ul class="nav-menu">
@@ -246,9 +296,16 @@
     </nav>
 
     <main>
-        <section id="home" class="relative min-h-[70vh] flex items-end md:items-center justify-start overflow-hidden">
-            <video class="absolute inset-0 w-full h-full object-cover object-[35%_center] md:object-center" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-                <source src="img/grupo-nueva-era-hero-video-compressed.mp4" type="video/mp4">
+        <section id="home" class="relative min-h-[70vh] bg-[#1c1c19] flex items-end md:items-center justify-start overflow-hidden">
+            <picture aria-hidden="true">
+                <source media="(max-width: 767px)" srcset="img/hero-nueva-era-poster-mobile.webp" width="540" height="720">
+                <img class="absolute inset-0 w-full h-full object-cover" src="img/hero-nueva-era-poster.webp" alt="" width="1600" height="686" fetchpriority="high" decoding="async">
+            </picture>
+            <video class="hero-video absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto" disableremoteplayback aria-hidden="true">
+                <source src="img/hero-nueva-era-mobile.mp4" type="video/mp4" media="(max-width: 767px)">
+                <source src="img/hero-nueva-era-mobile.webm" type="video/webm" media="(max-width: 767px)">
+                <source src="img/hero-nueva-era-desktop.mp4" type="video/mp4">
+                <source src="img/hero-nueva-era-desktop.webm" type="video/webm">
             </video>
             <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/75" aria-hidden="true"></div>
             <div class="relative z-10 w-full px-6 md:px-12 lg:px-16 py-20 md:py-32 max-w-6xl mx-auto text-left md:text-center flex flex-col items-start md:items-center">
@@ -308,7 +365,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <div class="service-card bg-surface-container-high flex flex-col overflow-hidden border-b-4 border-primary/10 hover:border-primary transition-all duration-300">
                     <div class="service-card-media w-full shrink-0 bg-surface-container">
-                        <img class="w-full h-full object-cover" src="img/servicio-impresion-offset.webp" alt="Máquina de impresión offset en taller" width="800" height="480" loading="lazy">
+                        <img class="w-full h-full object-cover" src="img/servicio-impresion-offset.webp" alt="Máquina de impresión offset en taller" width="800" height="480" loading="lazy" decoding="async">
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-1">
                         <h3 class="font-serif text-2xl mb-4">Impresión offset</h3>
@@ -322,7 +379,7 @@
                 </div>
                 <div class="service-card bg-surface-container-high flex flex-col overflow-hidden border-b-4 border-primary/10 hover:border-primary transition-all duration-300">
                     <div class="service-card-media w-full shrink-0 bg-surface-container">
-                        <img class="w-full h-full object-cover" src="img/servicio-acabados.webp" alt="Acabados gráficos: troquelado, doblado y laminados" width="800" height="480" loading="lazy">
+                        <img class="w-full h-full object-cover" src="img/servicio-acabados.webp" alt="Acabados gráficos: troquelado, doblado y laminados" width="800" height="480" loading="lazy" decoding="async">
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-1">
                         <h3 class="font-serif text-2xl mb-4">Acabados gráficos</h3>
@@ -336,7 +393,7 @@
                 </div>
                 <div class="service-card bg-surface-container-high flex flex-col overflow-hidden border-b-4 border-primary/10 hover:border-primary transition-all duration-300">
                     <div class="service-card-media w-full shrink-0 bg-surface-container">
-                        <img class="w-full h-full object-cover" src="img/servicio-packaging.webp" alt="Packaging: cajas, displays y etiquetas" width="800" height="480" loading="lazy">
+                        <img class="w-full h-full object-cover" src="img/servicio-packaging.webp" alt="Packaging: cajas, displays y etiquetas" width="800" height="480" loading="lazy" decoding="async">
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-1">
                         <h3 class="font-serif text-2xl mb-4">Packaging</h3>
@@ -350,7 +407,7 @@
                 </div>
                 <div class="service-card bg-surface-container-high flex flex-col overflow-hidden border-b-4 border-primary/10 hover:border-primary transition-all duration-300">
                     <div class="service-card-media w-full shrink-0 bg-surface-container">
-                        <img class="w-full h-full object-cover" src="img/servicio-corporativo.webp" alt="Material corporativo: tarjetas, papelería y carpetas" width="800" height="480" loading="lazy">
+                        <img class="w-full h-full object-cover" src="img/servicio-corporativo.webp" alt="Material corporativo: tarjetas, papelería y carpetas" width="800" height="480" loading="lazy" decoding="async">
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-1">
                         <h3 class="font-serif text-2xl mb-4">Material corporativo</h3>
@@ -364,7 +421,7 @@
                 </div>
                 <div class="service-card bg-surface-container-high flex flex-col overflow-hidden border-b-4 border-primary/10 hover:border-primary transition-all duration-300">
                     <div class="service-card-media w-full shrink-0 bg-surface-container">
-                        <img class="w-full h-full object-cover" src="img/servicio-diseno.webp" alt="Diseño gráfico y artes finales para imprenta" width="800" height="480" loading="lazy">
+                        <img class="w-full h-full object-cover" src="img/servicio-diseno.webp" alt="Diseño gráfico y artes finales para imprenta" width="800" height="480" loading="lazy" decoding="async">
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-1">
                         <h3 class="font-serif text-2xl mb-4">Diseño gráfico</h3>
@@ -378,7 +435,7 @@
                 </div>
                 <div class="service-card bg-surface-container-high flex flex-col overflow-hidden border-b-4 border-primary/10 hover:border-primary transition-all duration-300">
                     <div class="service-card-media w-full shrink-0 bg-surface-container">
-                        <img class="w-full h-full object-cover" src="img/servicio-logistica.webp" alt="Entrega y logística de pedidos impresos" width="800" height="480" loading="lazy">
+                        <img class="w-full h-full object-cover" src="img/servicio-logistica.webp" alt="Entrega y logística de pedidos impresos" width="800" height="480" loading="lazy" decoding="async">
                     </div>
                     <div class="p-8 md:p-10 flex flex-col flex-1">
                         <h3 class="font-serif text-2xl mb-4">Entrega y logística</h3>
@@ -399,11 +456,11 @@
                     <figure class="overflow-hidden bg-on-surface">
                         <img
                             class="w-full h-auto md:h-[520px] lg:h-[600px] object-cover object-center"
-                            src="img/foto-grupal-nuevaera.png"
+                            src="img/foto-grupal-nuevaera.webp"
                             alt="Equipo de Cooperativa Nueva Era"
                             width="900"
                             height="600"
-                            loading="lazy">
+                            loading="lazy" decoding="async">
                     </figure>
                     <div class="bg-primary p-6 sm:p-8 md:p-12 text-on-primary sm:absolute sm:-bottom-8 sm:-right-8 sm:max-w-[min(100%,320px)]">
                         <p class="font-serif text-xl sm:text-2xl md:text-4xl leading-tight">La fuerza de lo colectivo.</p>
@@ -436,24 +493,24 @@
                 <div class="logo-carousel-container fade-in">
                     <div class="logo-carousel">
                         <div class="logo-carousel-track">
-                            <div class="logo-item"><img src="img/logos/quaker-logo-2018.png" alt="Quaker" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img class="logo-sancor" src="img/logos/sancor.png" alt="Sancor" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/mundomarino.png" alt="Mundo Marino" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/Logo_Banco_Hipotecario.png" alt="Banco Hipotecario" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/logo_ESTRADA.png" alt="Estrada" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/avon-logo-0-2048x2048-1.png" alt="Avon" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/logo-santillana%201.png" alt="Santillana" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/Partido_Justicialista_emblema.png" alt="Partido Justicialista" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img class="logo-pro" src="img/logos/Propuesta_Republicana.svg%201.png" alt="Propuesta Republicana" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/quaker-logo-2018.png" alt="Quaker" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img class="logo-sancor" src="img/logos/sancor.png" alt="Sancor" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/mundomarino.png" alt="Mundo Marino" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/Logo_Banco_Hipotecario.png" alt="Banco Hipotecario" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/logo_ESTRADA.png" alt="Estrada" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/avon-logo-0-2048x2048-1.png" alt="Avon" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/logo-santillana%201.png" alt="Santillana" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img src="img/logos/Partido_Justicialista_emblema.png" alt="Partido Justicialista" loading="lazy" width="120" height="60"></div>
-                            <div class="logo-item"><img class="logo-pro" src="img/logos/Propuesta_Republicana.svg%201.png" alt="Propuesta Republicana" loading="lazy" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/quaker-logo-2018.webp" alt="Quaker" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img class="logo-sancor" src="img/logos/sancor.webp" alt="Sancor" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/mundomarino.webp" alt="Mundo Marino" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/Logo_Banco_Hipotecario.webp" alt="Banco Hipotecario" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/logo_ESTRADA.webp" alt="Estrada" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/avon-logo-0-2048x2048-1.webp" alt="Avon" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/logo-santillana-1.webp" alt="Santillana" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/Partido_Justicialista_emblema.webp" alt="Partido Justicialista" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img class="logo-pro" src="img/logos/Propuesta_Republicana-1.webp" alt="Propuesta Republicana" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/quaker-logo-2018.webp" alt="Quaker" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img class="logo-sancor" src="img/logos/sancor.webp" alt="Sancor" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/mundomarino.webp" alt="Mundo Marino" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/Logo_Banco_Hipotecario.webp" alt="Banco Hipotecario" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/logo_ESTRADA.webp" alt="Estrada" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/avon-logo-0-2048x2048-1.webp" alt="Avon" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/logo-santillana-1.webp" alt="Santillana" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img src="img/logos/Partido_Justicialista_emblema.webp" alt="Partido Justicialista" loading="lazy" decoding="async" width="120" height="60"></div>
+                            <div class="logo-item"><img class="logo-pro" src="img/logos/Propuesta_Republicana-1.webp" alt="Propuesta Republicana" loading="lazy" decoding="async" width="120" height="60"></div>
                         </div>
                     </div>
                     <div class="carousel-fade left" aria-hidden="true"></div>
@@ -550,7 +607,7 @@
     <footer class="bg-[#f6f3ee] py-16 md:py-24 px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 w-full border-t border-outline-variant/10">
         <div class="space-y-6">
             <div class="h-12">
-                <img src="img/logonuevaera.webp" alt="Nueva Era - Cooperativa Gráfica" class="h-full w-auto">
+                <img src="img/logonuevaera.webp" alt="Nueva Era - Cooperativa Gráfica" class="h-full w-auto" width="256" height="103">
             </div>
             <p class="font-body text-sm text-secondary leading-relaxed">Cooperativa gráfica en CABA: imprenta, acabados y diseño con más de 30 años de trayectoria.</p>
         </div>
@@ -585,8 +642,8 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script src="js/carousel.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/carousel.js" defer></script>
     <script src="https://web3forms.com/client/script.js" async defer></script>
     <div class="menu-overlay" aria-hidden="true"></div>
 </body>

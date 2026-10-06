@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leandroserapio.github.io/cooperativa-nueva-era/sitemap.xml
