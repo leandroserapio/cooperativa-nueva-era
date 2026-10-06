@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#af101a">
     <title>Nueva Era – Cooperativa Gráfica | Impresión y diseño en CABA</title>
     <meta name="description" content="Cooperativa gráfica en CABA con más de 30 años de trayectoria. Impresión, acabados, packaging, identidad corporativa y diseño. Soluciones integrales en comunicación visual. Pedí presupuesto.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="author" content="Nueva Era Cooperativa Gráfica">
     <meta name="geo.region" content="AR-C">
@@ -566,20 +567,20 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="form-group flex flex-col gap-2">
                                 <label class="font-label label-text text-[10px] text-secondary" for="name">Nombre completo</label>
-                                <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="text" id="name" name="name" required autocomplete="name">
+                                <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="text" id="name" name="name" maxlength="100" required autocomplete="name">
                             </div>
                             <div class="form-group flex flex-col gap-2">
                                 <label class="font-label label-text text-[10px] text-secondary" for="company">Empresa <span class="normal-case tracking-normal text-secondary/70">(opcional)</span></label>
-                                <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="text" id="company" name="company" autocomplete="organization">
+                                <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="text" id="company" name="company" maxlength="120" autocomplete="organization">
                             </div>
                         </div>
                         <div class="form-group flex flex-col gap-2">
                             <label class="font-label label-text text-[10px] text-secondary" for="email">Email</label>
-                            <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="email" id="email" name="email" required autocomplete="email">
+                            <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="email" id="email" name="email" maxlength="150" required autocomplete="email">
                         </div>
                         <div class="form-group flex flex-col gap-2">
                             <label class="font-label label-text text-[10px] text-secondary" for="phone">Teléfono</label>
-                            <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="tel" id="phone" name="phone" autocomplete="tel">
+                            <input class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full" type="tel" id="phone" name="phone" maxlength="30" autocomplete="tel">
                         </div>
                         <div class="form-group flex flex-col gap-2">
                             <label class="font-label label-text text-[10px] text-secondary" for="service">Servicio de interés</label>
@@ -595,7 +596,7 @@
                         </div>
                         <div class="form-group flex flex-col gap-2">
                             <label class="font-label label-text text-[10px] text-secondary" for="message">Mensaje</label>
-                            <textarea class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full resize-y min-h-[120px]" id="message" name="message" rows="5" required></textarea>
+                            <textarea class="bg-surface-container-high border-b-2 border-outline focus:border-primary focus:ring-0 px-4 py-3 outline-none transition-colors w-full resize-y min-h-[120px]" id="message" name="message" rows="5" maxlength="3000" required></textarea>
                         </div>
                         <button type="submit" class="w-full bg-primary text-on-primary py-5 font-label label-text text-sm hover:bg-primary-container transition-all">Enviar mensaje</button>
                     </form>

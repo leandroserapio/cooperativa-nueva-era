@@ -253,10 +253,7 @@ function initContactForm() {
         const accessKey = (accessKeyInput && accessKeyInput.value) ? accessKeyInput.value.trim() : '';
 
         if (!accessKey) {
-            showNotification(
-                'Falta la clave de envío: entrá a web3forms.com, pedí una Access Key con tu email, y pegala en index.html en el campo oculto access_key.',
-                'error'
-            );
+            showNotification('El formulario no está disponible en este momento. Escribinos por WhatsApp o a coopgraficanuevaera@gmail.com.', 'error');
             return;
         }
 
@@ -328,12 +325,12 @@ function initContactForm() {
                 const isCaptchaError = rawMsg.includes('captcha') || rawMsg.includes('hcaptcha');
                 const msg = isCaptchaError
                     ? 'El captcha expiró o no es válido. Marcá “Soy humano” de nuevo e intentá enviar.'
-                    : (result.message || 'No se pudo enviar. Revisá la clave en index.html o probá más tarde.');
+                    : 'No se pudo enviar el mensaje. Probá más tarde o escribinos por WhatsApp.';
                 showNotification(msg, 'error');
             }
         } catch (err) {
             resetHCaptcha();
-            showNotification('Error de conexión. Probá con otra red o abrí el sitio con “Live Server” si estás en local.', 'error');
+            showNotification('Error de conexión. Revisá tu internet e intentá de nuevo.', 'error');
         } finally {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
